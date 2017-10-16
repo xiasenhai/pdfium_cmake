@@ -161,10 +161,15 @@ set(FPDFDOC_SRCS
     core/fpdfdoc/cpvt_generateap.h
     core/fpdfdoc/cpvt_line.h
     core/fpdfdoc/cpvt_lineinfo.h
+    core/fpdfdoc/cpvt_secprops.h
+    core/fpdfdoc/cpvt_section.h
+    core/fpdfdoc/cpvt_sectioninfo.cpp
+    core/fpdfdoc/cpvt_sectioninfo.h
     core/fpdfdoc/cpvt_word.h
     core/fpdfdoc/cpvt_wordinfo.cpp
     core/fpdfdoc/cpvt_wordinfo.h
     core/fpdfdoc/cpvt_wordplace.h
+    core/fpdfdoc/cpvt_wordprops.h
     core/fpdfdoc/cpvt_wordrange.h
     core/fpdfdoc/csection.cpp
     core/fpdfdoc/csection.h
@@ -390,16 +395,8 @@ set(FPDFAPI_SRCS
     core/fpdfapi/parser/cpdf_number.h
     core/fpdfapi/parser/cpdf_object.cpp
     core/fpdfapi/parser/cpdf_object.h
-    core/fpdfapi/parser/cpdf_object_avail.cpp
-    core/fpdfapi/parser/cpdf_object_avail.h
-    core/fpdfapi/parser/cpdf_object_walker.cpp
-    core/fpdfapi/parser/cpdf_object_walker.h
-    core/fpdfapi/parser/cpdf_page_object_avail.cpp
-    core/fpdfapi/parser/cpdf_page_object_avail.h
     core/fpdfapi/parser/cpdf_parser.cpp
     core/fpdfapi/parser/cpdf_parser.h
-    core/fpdfapi/parser/cpdf_read_validator.cpp
-    core/fpdfapi/parser/cpdf_read_validator.h
     core/fpdfapi/parser/cpdf_reference.cpp
     core/fpdfapi/parser/cpdf_reference.h
     core/fpdfapi/parser/cpdf_security_handler.cpp
@@ -474,7 +471,6 @@ set(FXCODEC_SRCS
     core/fxcodec/codec/ccodec_jbig2module.h
     core/fxcodec/codec/ccodec_jpegmodule.h
     core/fxcodec/codec/ccodec_jpxmodule.h
-    core/fxcodec/codec/ccodec_scanlinedecoder.cpp
     core/fxcodec/codec/ccodec_scanlinedecoder.h
     core/fxcodec/codec/cjpx_decoder.h
     core/fxcodec/codec/codec_int.h
@@ -526,26 +522,26 @@ set(FXCODEC_SRCS
     # TODO pdf_enable_xfa
     )
 set(FXCRT_SRCS
-    core/fxcrt/autorestorer.h
-    core/fxcrt/bytestring.cpp
-    core/fxcrt/bytestring.h
-    core/fxcrt/cfx_binarybuf.cpp
-    core/fxcrt/cfx_binarybuf.h
-    core/fxcrt/cfx_bitstream.cpp
-    core/fxcrt/cfx_bitstream.h
-    core/fxcrt/cfx_datetime.cpp
-    core/fxcrt/cfx_datetime.h
-    core/fxcrt/cfx_fileaccess_posix.cpp
-    core/fxcrt/cfx_fileaccess_posix.h
-    core/fxcrt/cfx_fileaccess_windows.cpp
-    core/fxcrt/cfx_fileaccess_windows.h
-    core/fxcrt/cfx_fixedbufgrow.h
+    core/fxcrt/cfx_bytestring.cpp
+    core/fxcrt/cfx_bytestring.h
+    core/fxcrt/cfx_maybe_owned.h
     core/fxcrt/cfx_memorystream.cpp
     core/fxcrt/cfx_memorystream.h
-    core/fxcrt/cfx_utf8decoder.cpp
-    core/fxcrt/cfx_utf8decoder.h
-    core/fxcrt/cfx_widetextbuf.cpp
-    core/fxcrt/cfx_widetextbuf.h
+    core/fxcrt/cfx_observable.h
+    core/fxcrt/cfx_retain_ptr.h
+    core/fxcrt/cfx_shared_copy_on_write.h
+    core/fxcrt/cfx_string_c_template.h
+    core/fxcrt/cfx_string_data_template.h
+    core/fxcrt/cfx_string_pool_template.h
+    core/fxcrt/cfx_unowned_ptr.h
+    core/fxcrt/cfx_weak_ptr.h
+    core/fxcrt/cfx_widestring.cpp
+    core/fxcrt/cfx_widestring.h
+    core/fxcrt/fx_basic.h
+    core/fxcrt/fx_basic_buffer.cpp
+    core/fxcrt/fx_basic_gcc.cpp
+    core/fxcrt/fx_basic_utf.cpp
+    core/fxcrt/fx_basic_util.cpp
     core/fxcrt/fx_bidi.cpp
     core/fxcrt/fx_bidi.h
     core/fxcrt/fx_codepage.h
@@ -555,32 +551,20 @@ set(FXCRT_SRCS
     core/fxcrt/fx_extension.h
     core/fxcrt/fx_memory.cpp
     core/fxcrt/fx_memory.h
-    core/fxcrt/fx_random.cpp
-    core/fxcrt/fx_random.h
     core/fxcrt/fx_safe_types.h
     core/fxcrt/fx_stream.cpp
     core/fxcrt/fx_stream.h
-    core/fxcrt/fx_string.cpp
     core/fxcrt/fx_string.h
     core/fxcrt/fx_system.cpp
     core/fxcrt/fx_system.h
+    core/fxcrt/fx_ucd.h
     core/fxcrt/fx_ucddata.cpp
-    core/fxcrt/fx_ucddata.h
     core/fxcrt/fx_unicode.cpp
-    core/fxcrt/fx_unicode.h
-    core/fxcrt/ifx_fileaccess.h
-    core/fxcrt/ifx_pauseindicator.h
-    core/fxcrt/maybe_owned.h
-    core/fxcrt/observable.h
-    core/fxcrt/retain_ptr.h
-    core/fxcrt/shared_copy_on_write.h
-    core/fxcrt/string_data_template.h
-    core/fxcrt/string_pool_template.h
-    core/fxcrt/string_view_template.h
-    core/fxcrt/unowned_ptr.h
-    core/fxcrt/weak_ptr.h
-    core/fxcrt/widestring.cpp
-    core/fxcrt/widestring.h
+    core/fxcrt/fxcrt_posix.cpp
+    core/fxcrt/fxcrt_posix.h
+    core/fxcrt/fxcrt_windows.cpp
+    core/fxcrt/fxcrt_windows.h
+    core/fxcrt/ifxcrt_fileaccess.h
     core/fxcrt/xml/cxml_attritem.cpp
     core/fxcrt/xml/cxml_attritem.h
     core/fxcrt/xml/cxml_attrmap.cpp
@@ -597,8 +581,29 @@ set(FXCRT_SRCS
     core/fxcrt/xml/cxml_parser.h
     # TODO pdf_enable_xfa
     )
+set(FXEDIT_SRCS
+    fpdfsdk/fxedit/fx_edit.h
+    fpdfsdk/fxedit/fxet_ap.cpp
+    fpdfsdk/fxedit/fxet_edit.cpp
+    fpdfsdk/fxedit/fxet_edit.h
+    fpdfsdk/fxedit/fxet_list.cpp
+    fpdfsdk/fxedit/fxet_list.h
+    )
 set(FXGE_SRCS
     # do NOT add core/fxge/android/* because it will break your fonts (wrong font mgr will be used)
+    core/fxge/android/cfpf_skiabufferfont.h
+    core/fxge/android/cfpf_skiadevicemodule.cpp
+    core/fxge/android/cfpf_skiadevicemodule.h
+    core/fxge/android/cfpf_skiafilefont.h
+    core/fxge/android/cfpf_skiafont.cpp
+    core/fxge/android/cfpf_skiafont.h
+    core/fxge/android/cfpf_skiafontdescriptor.h
+    core/fxge/android/cfpf_skiafontmgr.cpp
+    core/fxge/android/cfpf_skiafontmgr.h
+    core/fxge/android/cfpf_skiapathfont.h
+    core/fxge/android/cfx_androidfontinfo.cpp
+    core/fxge/android/cfx_androidfontinfo.h
+    core/fxge/android/fx_android_imp.cpp
     core/fxge/cfx_cliprgn.cpp
     core/fxge/cfx_cliprgn.h
     core/fxge/cfx_color.cpp
@@ -680,6 +685,7 @@ set(FXGE_SRCS
     core/fxge/fx_ge_fontmap.cpp
     core/fxge/fx_ge_linux.cpp
     core/fxge/fx_ge_text.cpp
+    core/fxge/fx_text_int.h
     core/fxge/ifx_renderdevicedriver.cpp
     core/fxge/ifx_renderdevicedriver.h
     core/fxge/ifx_systemfontinfo.h
@@ -688,8 +694,8 @@ set(FXGE_SRCS
     core/fxge/agg/fx_agg_driver.cpp
     core/fxge/agg/fx_agg_driver.h
     # TODO is_mac
-    core/fxge/apple/fx_apple_platform.cpp
     core/fxge/apple/apple_int.h
+    core/fxge/apple/fx_apple_platform.cpp
     core/fxge/apple/fx_mac_imp.cpp
     core/fxge/apple/fx_quartz_device.cpp
     # TODO is_win
@@ -702,43 +708,39 @@ set(FXGE_SRCS
     # core/fxge/win32/win32_int.h
     )
 set(PWL_SRCS
-    fpdfsdk/pwl/cpwl_appstream.cpp
-    fpdfsdk/pwl/cpwl_appstream.h
-    fpdfsdk/pwl/cpwl_button.cpp
-    fpdfsdk/pwl/cpwl_button.h
-    fpdfsdk/pwl/cpwl_caret.cpp
-    fpdfsdk/pwl/cpwl_caret.h
-    fpdfsdk/pwl/cpwl_combo_box.cpp
-    fpdfsdk/pwl/cpwl_combo_box.h
-    fpdfsdk/pwl/cpwl_edit.cpp
-    fpdfsdk/pwl/cpwl_edit.h
-    fpdfsdk/pwl/cpwl_edit_ctrl.cpp
-    fpdfsdk/pwl/cpwl_edit_ctrl.h
-    fpdfsdk/pwl/cpwl_edit_impl.cpp
-    fpdfsdk/pwl/cpwl_edit_impl.h
-    fpdfsdk/pwl/cpwl_font_map.cpp
-    fpdfsdk/pwl/cpwl_font_map.h
-    fpdfsdk/pwl/cpwl_icon.cpp
-    fpdfsdk/pwl/cpwl_icon.h
-    fpdfsdk/pwl/cpwl_list_box.cpp
-    fpdfsdk/pwl/cpwl_list_box.h
-    fpdfsdk/pwl/cpwl_list_impl.cpp
-    fpdfsdk/pwl/cpwl_list_impl.h
-    fpdfsdk/pwl/cpwl_scroll_bar.cpp
-    fpdfsdk/pwl/cpwl_scroll_bar.h
-    fpdfsdk/pwl/cpwl_special_button.cpp
-    fpdfsdk/pwl/cpwl_special_button.h
-    fpdfsdk/pwl/cpwl_timer.cpp
-    fpdfsdk/pwl/cpwl_timer.h
-    fpdfsdk/pwl/cpwl_timer_handler.cpp
-    fpdfsdk/pwl/cpwl_timer_handler.h
-    fpdfsdk/pwl/cpwl_wnd.cpp
-    fpdfsdk/pwl/cpwl_wnd.h
+    fpdfsdk/pdfwindow/cpwl_appstream.cpp
+    fpdfsdk/pdfwindow/cpwl_appstream.h
+    fpdfsdk/pdfwindow/cpwl_button.cpp
+    fpdfsdk/pdfwindow/cpwl_button.h
+    fpdfsdk/pdfwindow/cpwl_caret.cpp
+    fpdfsdk/pdfwindow/cpwl_caret.h
+    fpdfsdk/pdfwindow/cpwl_combo_box.cpp
+    fpdfsdk/pdfwindow/cpwl_combo_box.h
+    fpdfsdk/pdfwindow/cpwl_edit.cpp
+    fpdfsdk/pdfwindow/cpwl_edit.h
+    fpdfsdk/pdfwindow/cpwl_edit_ctrl.cpp
+    fpdfsdk/pdfwindow/cpwl_edit_ctrl.h
+    fpdfsdk/pdfwindow/cpwl_font_map.cpp
+    fpdfsdk/pdfwindow/cpwl_font_map.h
+    fpdfsdk/pdfwindow/cpwl_icon.cpp
+    fpdfsdk/pdfwindow/cpwl_icon.h
+    fpdfsdk/pdfwindow/cpwl_list_box.cpp
+    fpdfsdk/pdfwindow/cpwl_list_box.h
+    fpdfsdk/pdfwindow/cpwl_scroll_bar.cpp
+    fpdfsdk/pdfwindow/cpwl_scroll_bar.h
+    fpdfsdk/pdfwindow/cpwl_special_button.cpp
+    fpdfsdk/pdfwindow/cpwl_special_button.h
+    fpdfsdk/pdfwindow/cpwl_timer.cpp
+    fpdfsdk/pdfwindow/cpwl_timer.h
+    fpdfsdk/pdfwindow/cpwl_timer_handler.cpp
+    fpdfsdk/pdfwindow/cpwl_timer_handler.h
+    fpdfsdk/pdfwindow/cpwl_wnd.cpp
+    fpdfsdk/pdfwindow/cpwl_wnd.h
     )
 set(JAVASCRIPT_SRCS
-    # TODO pdf_enable_v8
     fpdfsdk/javascript/ijs_event_context.h
     fpdfsdk/javascript/ijs_runtime.h
+    # TODO pdf_enable_v8
     fpdfsdk/javascript/JS_Runtime_Stub.cpp
     )
 set(FORMFILLER_SRCS
@@ -762,8 +764,6 @@ set(FORMFILLER_SRCS
     fpdfsdk/formfiller/cffl_radiobutton.h
     fpdfsdk/formfiller/cffl_textfield.cpp
     fpdfsdk/formfiller/cffl_textfield.h
-    fpdfsdk/formfiller/cffl_textobject.cpp
-    fpdfsdk/formfiller/cffl_textobject.h
     )
 
 set(THIRD_PARTY_BIGINT_SRCS
@@ -797,6 +797,7 @@ set(THIRD_PARTY_FX_FREETYPE_SRCS
     freetype/src/include/freetype/ftmm.h
     freetype/src/include/freetype/ftmodapi.h
     freetype/src/include/freetype/ftmoderr.h
+    freetype/src/include/freetype/internal/ftobjs.h
     freetype/src/include/freetype/ftotval.h
     freetype/src/include/freetype/ftoutln.h
     freetype/src/include/freetype/ftrender.h
@@ -807,7 +808,6 @@ set(THIRD_PARTY_FX_FREETYPE_SRCS
     freetype/src/include/freetype/ftttdrv.h
     freetype/src/include/freetype/fttypes.h
     freetype/src/include/freetype/internal/autohint.h
-    freetype/src/include/freetype/internal/cfftypes.h
     freetype/src/include/freetype/internal/ftcalc.h
     freetype/src/include/freetype/internal/ftdebug.h
     freetype/src/include/freetype/internal/ftdriver.h
@@ -855,6 +855,7 @@ set(THIRD_PARTY_FX_FREETYPE_SRCS
     freetype/src/src/base/ftsystem.c
     freetype/src/src/cff/cff.c
     freetype/src/src/cff/cffobjs.h
+    freetype/src/src/cff/cfftypes.h
     freetype/src/src/cid/type1cid.c
     freetype/src/src/psaux/psaux.c
     freetype/src/src/pshinter/pshinter.c
@@ -887,34 +888,33 @@ set(THIRD_PARTY_FX_AGG_SRCS
     agg23/agg_vcgen_stroke.cpp
     )
 set(THIRD_PARTY_FX_LCMS2
-    lcms/include/lcms2.h
-    lcms/include/lcms2_plugin.h
-    lcms/src/cmsalpha.c
-    lcms/src/cmscam02.c
-    lcms/src/cmscgats.c
-    lcms/src/cmscnvrt.c
-    lcms/src/cmserr.c
-    lcms/src/cmsgamma.c
-    lcms/src/cmsgmt.c
-    lcms/src/cmshalf.c
-    lcms/src/cmsintrp.c
-    lcms/src/cmsio0.c
-    lcms/src/cmsio1.c
-    lcms/src/cmslut.c
-    lcms/src/cmsmd5.c
-    lcms/src/cmsmtrx.c
-    lcms/src/cmsnamed.c
-    lcms/src/cmsopt.c
-    lcms/src/cmspack.c
-    lcms/src/cmspcs.c
-    lcms/src/cmsplugin.c
-    lcms/src/cmsps2.c
-    lcms/src/cmssamp.c
-    lcms/src/cmssm.c
-    lcms/src/cmstypes.c
-    lcms/src/cmsvirt.c
-    lcms/src/cmswtpnt.c
-    lcms/src/cmsxform.c
+    lcms2-2.6/include/lcms2.h
+    lcms2-2.6/include/lcms2_plugin.h
+    lcms2-2.6/src/cmscam02.c
+    lcms2-2.6/src/cmscgats.c
+    lcms2-2.6/src/cmscnvrt.c
+    lcms2-2.6/src/cmserr.c
+    lcms2-2.6/src/cmsgamma.c
+    lcms2-2.6/src/cmsgmt.c
+    lcms2-2.6/src/cmshalf.c
+    lcms2-2.6/src/cmsintrp.c
+    lcms2-2.6/src/cmsio0.c
+    lcms2-2.6/src/cmsio1.c
+    lcms2-2.6/src/cmslut.c
+    lcms2-2.6/src/cmsmd5.c
+    lcms2-2.6/src/cmsmtrx.c
+    lcms2-2.6/src/cmsnamed.c
+    lcms2-2.6/src/cmsopt.c
+    lcms2-2.6/src/cmspack.c
+    lcms2-2.6/src/cmspcs.c
+    lcms2-2.6/src/cmsplugin.c
+    lcms2-2.6/src/cmsps2.c
+    lcms2-2.6/src/cmssamp.c
+    lcms2-2.6/src/cmssm.c
+    lcms2-2.6/src/cmstypes.c
+    lcms2-2.6/src/cmsvirt.c
+    lcms2-2.6/src/cmswtpnt.c
+    lcms2-2.6/src/cmsxform.c
     )
 set(THIRD_PARTY_FX_LIBOPENJPEG
     libopenjpeg20/bio.c
@@ -931,11 +931,11 @@ set(THIRD_PARTY_FX_LIBOPENJPEG
     libopenjpeg20/openjpeg.c
     libopenjpeg20/opj_clock.c
     libopenjpeg20/pi.c
+    libopenjpeg20/raw.c
     libopenjpeg20/t1.c
     libopenjpeg20/t2.c
     libopenjpeg20/tcd.c
     libopenjpeg20/tgt.c
-    libopenjpeg20/thread.c
     )
 set(THIRD_PARTY_PDFIUM_BASE_SRCS
     base/allocator/partition_allocator/address_space_randomization.cc
@@ -956,7 +956,6 @@ set(THIRD_PARTY_PDFIUM_BASE_SRCS
     base/numerics/safe_conversions_impl.h
     base/numerics/safe_math.h
     base/numerics/safe_math_impl.h
-    base/optional.h
     base/ptr_util.h
     base/stl_util.h
     base/sys_byteorder.h
@@ -981,6 +980,7 @@ set(MAIN_SRCS
     ${FPDFTEXT_SRCS}
     ${FXCODEC_SRCS}
     ${FXCRT_SRCS}
+    ${FXEDIT_SRCS}
     ${FXGE_SRCS}
     ${JAVASCRIPT_SRCS}
     ${PWL_SRCS}
