@@ -151,9 +151,6 @@ set(FPDFDOC_SRCS
     core/fpdfdoc/cpdf_variabletext.h
     core/fpdfdoc/cpdf_viewerpreferences.cpp
     core/fpdfdoc/cpdf_viewerpreferences.h
-    core/fpdfdoc/cpvt_color.cpp
-    core/fpdfdoc/cpvt_color.h
-    core/fpdfdoc/cpvt_dash.h
     core/fpdfdoc/cpvt_floatrect.h
     core/fpdfdoc/cpvt_fontmap.cpp
     core/fpdfdoc/cpvt_fontmap.h
