@@ -1004,15 +1004,16 @@ target_include_directories(freetype PUBLIC
 target_compile_definitions(freetype PRIVATE -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=<freetype-custom-config/ftmodule.h> -DFT_CONFIG_OPTIONS_H=<freetype-custom-config/ftoption.h>)
 
 # PDFium
-add_library(pdfium ${SRCS} ${freetype} ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES})
-target_include_directories(pdfium PUBLIC
+add_library(pdfium ${SRCS})
+target_include_directories(pdfium PRIVATE
     ${ZLIB_INCLUDE_DIRS}
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/public>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/third_party/freetype/include>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/third_party/freetype/src/include>
     ${JPEG_INCLUDE_DIR}
-)
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium>
+    )
+target_include_directories(pdfium PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/public>
+    )
+target_link_libraries(pdfium PRIVATE freetype ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES})
 target_compile_definitions(pdfium PRIVATE -DNOMINMAX -DOPJ_STATIC -DPNG_PREFIX -DPNG_USE_READ_MACROS -DV8_DEPRECATION_WARNINGS -DUSE_SYSTEM_LIBJPEG -DUSE_SYSTEM_ZLIB -DDEFINE_PS_TABLES -DDEFINE_PS_TABLES_DATA)
 
 # pdfium_test sample
@@ -1028,10 +1029,13 @@ set(PDFIUM_TEST_SRC
     pdfium/samples/pdfium_test.cc
     )
 add_executable(pdfium_test ${PDFIUM_TEST_SRC})
-set (EXTRA_LIBS pdfium freetype ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
+target_include_directories(pdfium_test PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium>
+    )
+set (EXTRA_LIBS pdfium ${PNG_LIBRARIES})
 if(APPLE)
     find_library(APPKIT AppKit REQUIRED)
     find_library(CORE_FOUNDATION CoreFoundation REQUIRED)
     set (EXTRA_LIBS ${EXTRA_LIBS} ${APPKIT} ${CORE_FOUNDATION})
 endif()
-target_link_libraries(pdfium_test ${EXTRA_LIBS})
+target_link_libraries(pdfium_test PRIVATE ${EXTRA_LIBS})
