@@ -684,11 +684,6 @@ set(FXGE_SRCS
     # TODO pdf_use_skia (skia vs. agg23)
     core/fxge/agg/fx_agg_driver.cpp
     core/fxge/agg/fx_agg_driver.h
-    # TODO is_mac
-    core/fxge/apple/fx_apple_platform.cpp
-    core/fxge/apple/apple_int.h
-    core/fxge/apple/fx_mac_imp.cpp
-    core/fxge/apple/fx_quartz_device.cpp
     # TODO is_win
     # core/fxge/win32/dwrite_int.h
     # core/fxge/win32/fx_win32_device.cpp
@@ -698,6 +693,14 @@ set(FXGE_SRCS
     # core/fxge/win32/fx_win32_print.cpp
     # core/fxge/win32/win32_int.h
     )
+if(APPLE)
+    set(FXGE_SRCS ${FXGE_SRCS}
+        core/fxge/apple/fx_apple_platform.cpp
+        core/fxge/apple/apple_int.h
+        core/fxge/apple/fx_mac_imp.cpp
+        core/fxge/apple/fx_quartz_device.cpp
+    )
+endif()
 set(PWL_SRCS
     fpdfsdk/pwl/cpwl_appstream.cpp
     fpdfsdk/pwl/cpwl_appstream.h
