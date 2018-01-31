@@ -365,6 +365,8 @@ set(FPDFAPI_SRCS
     core/fpdfapi/parser/cpdf_array.h
     core/fpdfapi/parser/cpdf_boolean.cpp
     core/fpdfapi/parser/cpdf_boolean.h
+    core/fpdfapi/parser/cpdf_cross_ref_avail.cpp
+    core/fpdfapi/parser/cpdf_cross_ref_avail.h
     core/fpdfapi/parser/cpdf_crypto_handler.cpp
     core/fpdfapi/parser/cpdf_crypto_handler.h
     core/fpdfapi/parser/cpdf_data_avail.cpp
@@ -580,8 +582,6 @@ set(FXCRT_SRCS
     core/fxcrt/widestring.h
     core/fxcrt/xml/cxml_attritem.cpp
     core/fxcrt/xml/cxml_attritem.h
-    core/fxcrt/xml/cxml_attrmap.cpp
-    core/fxcrt/xml/cxml_attrmap.h
     core/fxcrt/xml/cxml_content.cpp
     core/fxcrt/xml/cxml_content.h
     core/fxcrt/xml/cxml_databufacc.cpp
@@ -737,9 +737,9 @@ set(PWL_SRCS
     )
 set(JAVASCRIPT_SRCS
     # TODO pdf_enable_v8
-    fpdfsdk/javascript/ijs_event_context.h
-    fpdfsdk/javascript/ijs_runtime.h
-    fpdfsdk/javascript/JS_Runtime_Stub.cpp
+    fxjs/cjs_event_context_stub.cpp
+    fxjs/cjs_event_context_stub.h
+    fxjs/cjs_runtimestub.cpp
     )
 set(FORMFILLER_SRCS
     fpdfsdk/formfiller/cba_fontmap.cpp
@@ -785,7 +785,6 @@ set(THIRD_PARTY_FX_FREETYPE_SRCS
     freetype/src/include/freetype/freetype.h
     freetype/src/include/freetype/ftadvanc.h
     freetype/src/include/freetype/ftbitmap.h
-    freetype/src/include/freetype/ftcffdrv.h
     freetype/src/include/freetype/fterrdef.h
     freetype/src/include/freetype/fterrors.h
     freetype/src/include/freetype/ftglyph.h
@@ -804,13 +803,12 @@ set(THIRD_PARTY_FX_FREETYPE_SRCS
     freetype/src/include/freetype/ftsnames.h
     freetype/src/include/freetype/ftsystem.h
     freetype/src/include/freetype/fttrigon.h
-    freetype/src/include/freetype/ftttdrv.h
     freetype/src/include/freetype/fttypes.h
     freetype/src/include/freetype/internal/autohint.h
     freetype/src/include/freetype/internal/cfftypes.h
     freetype/src/include/freetype/internal/ftcalc.h
     freetype/src/include/freetype/internal/ftdebug.h
-    freetype/src/include/freetype/internal/ftdriver.h
+    freetype/src/include/freetype/internal/ftdrv.h
     freetype/src/include/freetype/internal/ftgloadr.h
     freetype/src/include/freetype/internal/fthash.h
     freetype/src/include/freetype/internal/ftmemory.h
@@ -848,6 +846,7 @@ set(THIRD_PARTY_FX_FREETYPE_SRCS
     freetype/src/src/base/ftbase.c
     freetype/src/src/base/ftbase.h
     freetype/src/src/base/ftbitmap.c
+    freetype/src/src/base/ftfntfmt.c
     freetype/src/src/base/ftglyph.c
     freetype/src/src/base/ftinit.c
     freetype/src/src/base/ftlcdfil.c
@@ -931,6 +930,7 @@ set(THIRD_PARTY_FX_LIBOPENJPEG
     libopenjpeg20/openjpeg.c
     libopenjpeg20/opj_clock.c
     libopenjpeg20/pi.c
+    libopenjpeg20/sparse_array.c
     libopenjpeg20/t1.c
     libopenjpeg20/t2.c
     libopenjpeg20/tcd.c

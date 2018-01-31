@@ -4,7 +4,9 @@ Use this for PDFium development in CLion on a Mac.
 
 ## Quick Start
 
-Install (or update) the Chromium depot tools. In the top-level dir, run `fetch pdfium` (takes a long time).
+Install (or update) the Chromium depot tools.
+
+In this project's top-level dir, run `fetch pdfium`. Go get some coffee, because this will take a long time.
 
 Install Homebrew in case you don't have it, then run `brew install libjpg libpng`.
 
