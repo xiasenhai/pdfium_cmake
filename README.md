@@ -8,7 +8,7 @@ Install (or update) the Chromium depot tools.
 
 In this project's top-level dir, run `fetch pdfium`. Go get some coffee, because this will take a long time.
 
-Install Homebrew in case you don't have it, then run `brew install libjpg libpng`.
+Install Homebrew in case you don't have it, then run `brew install libjpg zlib libpng icu4c`.
 
 Open the top-level dir in CLion, then build the **pdfium_test** target.
 
