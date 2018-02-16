@@ -2803,11 +2803,13 @@ if(ENABLE_V8)
     target_include_directories(pdfium PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/v8/include>
     )
+    target_compile_definitions(pdfium PUBLIC $<TARGET_PROPERTY:v8,INTERFACE_COMPILE_DEFINITIONS> ${PDFIUM_DEFINES})
 else()
     target_link_libraries(pdfium PRIVATE freetype ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES})
+    target_compile_definitions(pdfium PUBLIC ${PDFIUM_DEFINES})
 endif()
 
-target_compile_definitions(pdfium PUBLIC $<TARGET_PROPERTY:v8,INTERFACE_COMPILE_DEFINITIONS> ${PDFIUM_DEFINES})
+
 
 # pdfium_test sample
 set(PDFIUM_TEST_SRC
