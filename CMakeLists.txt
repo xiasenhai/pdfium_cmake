@@ -75,7 +75,7 @@ set(PDFIUM_SRC
     fpdfsdk/fpdfeditpath.cpp
     fpdfsdk/fpdfedittext.cpp
     fpdfsdk/fpdfformfill.cpp
-    fpdfsdk/fpdfppo.cpp
+    fpdfsdk/fpdf_ppo.cpp
     fpdfsdk/fpdfsave.cpp
     fpdfsdk/fpdftext.cpp
     fpdfsdk/fpdfview.cpp
@@ -570,6 +570,7 @@ set(FXCRT_SRC
     core/fxcrt/cfx_utf8decoder.h
     core/fxcrt/cfx_widetextbuf.cpp
     core/fxcrt/cfx_widetextbuf.h
+    core/fxcrt/fileaccess_iface.h
     core/fxcrt/fx_bidi.cpp
     core/fxcrt/fx_bidi.h
     core/fxcrt/fx_codepage.h
@@ -592,10 +593,9 @@ set(FXCRT_SRC
     core/fxcrt/fx_ucddata.h
     core/fxcrt/fx_unicode.cpp
     core/fxcrt/fx_unicode.h
-    core/fxcrt/ifx_fileaccess.h
-    core/fxcrt/ifx_pauseindicator.h
     core/fxcrt/maybe_owned.h
     core/fxcrt/observable.h
+    core/fxcrt/pauseindicator_iface.h
     core/fxcrt/retain_ptr.h
     core/fxcrt/shared_copy_on_write.h
     core/fxcrt/string_data_template.h
@@ -678,7 +678,7 @@ set(FXGE_SRC
     core/fxge/dib/cstretchengine.cpp
     core/fxge/dib/cstretchengine.h
     core/fxge/dib/fx_dib_main.cpp
-    core/fxge/dib/ifx_scanlinecomposer.h
+    core/fxge/dib/scanlinecomposer_iface.h
     core/fxge/fontdata/chromefontdata/FoxitDingbats.cpp
     core/fxge/fontdata/chromefontdata/FoxitFixed.cpp
     core/fxge/fontdata/chromefontdata/FoxitFixedBold.cpp
@@ -703,9 +703,9 @@ set(FXGE_SRC
     core/fxge/fx_ge_fontmap.cpp
     core/fxge/fx_ge_linux.cpp
     core/fxge/fx_ge_text.cpp
-    core/fxge/ifx_renderdevicedriver.cpp
-    core/fxge/ifx_renderdevicedriver.h
-    core/fxge/ifx_systemfontinfo.h
+    core/fxge/renderdevicedriver_iface.cpp
+    core/fxge/renderdevicedriver_iface.h
+    core/fxge/systemfontinfo_iface.h
     core/fxge/win32/cfx_windowsdib.h
     # TODO pdf_use_skia (skia vs. agg23)
     core/fxge/agg/fx_agg_driver.cpp
@@ -766,6 +766,10 @@ if(ENABLE_V8)
         fxjs/CJX_Define.h
         fxjs/JS_Define.cpp
         fxjs/JS_Define.h
+        fxjs/cfx_v8.cpp
+        fxjs/cfx_v8.h
+        fxjs/cfxjs_engine.cpp
+        fxjs/cfxjs_engine.h
         fxjs/cjs_annot.cpp
         fxjs/cjs_annot.h
         fxjs/cjs_app.cpp
@@ -782,8 +786,6 @@ if(ENABLE_V8)
         fxjs/cjs_display.h
         fxjs/cjs_document.cpp
         fxjs/cjs_document.h
-        fxjs/cjs_embedobj.cpp
-        fxjs/cjs_embedobj.h
         fxjs/cjs_event.cpp
         fxjs/cjs_event.h
         fxjs/cjs_event_context.cpp
@@ -834,12 +836,8 @@ if(ENABLE_V8)
         fxjs/cjs_timerobj.h
         fxjs/cjs_util.cpp
         fxjs/cjs_util.h
-        fxjs/cjs_v8.cpp
-        fxjs/cjs_v8.h
         fxjs/cjs_zoomtype.cpp
         fxjs/cjs_zoomtype.h
-        fxjs/fxjs_v8.cpp
-        fxjs/fxjs_v8.h
         fxjs/global_timer.cpp
         fxjs/global_timer.h
         fxjs/js_resources.cpp
@@ -1078,12 +1076,17 @@ set(THIRD_PARTY_PDFIUM_BASE_SRC
     base/stl_util.h
     base/sys_byteorder.h
     base/template_util.h
-    build/build_config.h
 ) # THIRD_PARTY_PDFIUM_BASE_SRC
+
+set(THIRD_PARTY_SKIA_SHARED_SRC
+    skia_shared/SkFloatToDecimal.cpp
+    skia_shared/SkFloatToDecimal.h
+) # THIRD_PARTY_SKIA_SHARED_SRC
 
 set(THIRD_PARTY_SRC
     ${THIRD_PARTY_BIGINT_SRC}
     ${THIRD_PARTY_PDFIUM_BASE_SRC}
+    ${THIRD_PARTY_SKIA_SHARED_SRC}
     ${THIRD_PARTY_FX_AGG_SRC}
     ${THIRD_PARTY_FX_LCMS2}
     ${THIRD_PARTY_FX_LIBOPENJPEG}
