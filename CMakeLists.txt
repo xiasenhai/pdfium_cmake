@@ -2789,8 +2789,9 @@ if(ENABLE_V8)
     endif(V8_USE_SNAPSHOT)
 
     list(APPEND PDFIUM_DEFINES -DPDF_ENABLE_V8)
-
-endif()
+else() # ENABLE_V8
+    find_package(ICU REQUIRED COMPONENTS UC REQUIRED)
+endif() # ENABLE_V8
 
 add_library(pdfium ${SRC})
 target_include_directories(pdfium PRIVATE
@@ -2808,7 +2809,8 @@ if(ENABLE_V8)
     )
     target_compile_definitions(pdfium PUBLIC $<TARGET_PROPERTY:v8,INTERFACE_COMPILE_DEFINITIONS> ${PDFIUM_DEFINES})
 else()
-    target_link_libraries(pdfium PRIVATE freetype ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES})
+    target_link_libraries(pdfium PRIVATE freetype ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${ICU_UC_LIBRARIES})
+    target_include_directories(pdfium PRIVATE ${ICU_INCLUDE_DIRS})
     target_compile_definitions(pdfium PUBLIC ${PDFIUM_DEFINES})
 endif()
 
