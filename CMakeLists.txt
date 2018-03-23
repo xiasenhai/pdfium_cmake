@@ -2827,6 +2827,9 @@ set(PDFIUM_TEST_SRC
     pdfium/testing/image_diff/image_diff_png.cpp
     pdfium/testing/image_diff/image_diff_png.h
     pdfium/samples/pdfium_test.cc
+    pdfium/samples/pdfium_test_dump_helper.cc
+    pdfium/samples/pdfium_test_event_helper.cc
+    pdfium/samples/pdfium_test_write_helper.cc
     )
 add_executable(pdfium_test ${PDFIUM_TEST_SRC})
 target_include_directories(pdfium_test PRIVATE
