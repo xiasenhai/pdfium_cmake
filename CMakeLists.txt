@@ -766,6 +766,10 @@ if(ENABLE_V8)
         fxjs/CJX_Define.h
         fxjs/JS_Define.cpp
         fxjs/JS_Define.h
+        fxjs/cfx_v8.cpp
+        fxjs/cfx_v8.h
+        fxjs/cfxjs_engine.cpp
+        fxjs/cfxjs_engine.h
         fxjs/cjs_annot.cpp
         fxjs/cjs_annot.h
         fxjs/cjs_app.cpp
@@ -782,8 +786,6 @@ if(ENABLE_V8)
         fxjs/cjs_display.h
         fxjs/cjs_document.cpp
         fxjs/cjs_document.h
-        fxjs/cjs_embedobj.cpp
-        fxjs/cjs_embedobj.h
         fxjs/cjs_event.cpp
         fxjs/cjs_event.h
         fxjs/cjs_event_context.cpp
@@ -834,12 +836,8 @@ if(ENABLE_V8)
         fxjs/cjs_timerobj.h
         fxjs/cjs_util.cpp
         fxjs/cjs_util.h
-        fxjs/cjs_v8.cpp
-        fxjs/cjs_v8.h
         fxjs/cjs_zoomtype.cpp
         fxjs/cjs_zoomtype.h
-        fxjs/fxjs_v8.cpp
-        fxjs/fxjs_v8.h
         fxjs/global_timer.cpp
         fxjs/global_timer.h
         fxjs/js_resources.cpp
@@ -1169,7 +1167,6 @@ if(ENABLE_V8)
 
     # for all cases (mksnapshot / v8 no snapshot / internal / external)
     set(V8_BASE_SRC
-        include/v8-debug.h
         include/v8-inspector-protocol.h
         include/v8-inspector.h
         include/v8-platform.h
@@ -1641,6 +1638,7 @@ if(ENABLE_V8)
         src/heap/invalidated-slots-inl.h
         src/heap/invalidated-slots.cc
         src/heap/invalidated-slots.h
+        src/heap/item-parallel-job.cc
         src/heap/item-parallel-job.h
         src/heap/local-allocator.h
         src/heap/mark-compact-inl.h
@@ -1690,6 +1688,8 @@ if(ENABLE_V8)
         src/icu_util.h
         src/identity-map.cc
         src/identity-map.h
+        src/instruction-stream.cc
+        src/instruction-stream.h
         src/interface-descriptors.cc
         src/interface-descriptors.h
         src/interpreter/block-coverage-builder.h
@@ -2092,8 +2092,6 @@ if(ENABLE_V8)
         src/wasm/signature-map.h
         src/wasm/streaming-decoder.cc
         src/wasm/streaming-decoder.h
-        src/wasm/wasm-api.cc
-        src/wasm/wasm-api.h
         src/wasm/wasm-code-manager.cc
         src/wasm/wasm-code-manager.h
         src/wasm/wasm-code-specialization.cc
@@ -2504,6 +2502,8 @@ if(ENABLE_V8)
         src/builtins/builtins-typedarray-gen.cc
         src/builtins/builtins-utils-gen.h
         src/builtins/builtins-wasm-gen.cc
+        src/builtins/growable-fixed-array-gen.cc
+        src/builtins/growable-fixed-array-gen.h
         src/builtins/setup-builtins-internal.cc
         src/heap/setup-heap-internal.cc
         src/ic/accessor-assembler.cc
