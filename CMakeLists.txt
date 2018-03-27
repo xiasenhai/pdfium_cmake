@@ -75,7 +75,7 @@ set(PDFIUM_SRC
     fpdfsdk/fpdfeditpath.cpp
     fpdfsdk/fpdfedittext.cpp
     fpdfsdk/fpdfformfill.cpp
-    fpdfsdk/fpdfppo.cpp
+    fpdfsdk/fpdf_ppo.cpp
     fpdfsdk/fpdfsave.cpp
     fpdfsdk/fpdftext.cpp
     fpdfsdk/fpdfview.cpp
@@ -1078,12 +1078,17 @@ set(THIRD_PARTY_PDFIUM_BASE_SRC
     base/stl_util.h
     base/sys_byteorder.h
     base/template_util.h
-    build/build_config.h
 ) # THIRD_PARTY_PDFIUM_BASE_SRC
+
+set(THIRD_PARTY_SKIA_SHARED_SRC
+    skia_shared/SkFloatToDecimal.cpp
+    skia_shared/SkFloatToDecimal.h
+) # THIRD_PARTY_SKIA_SHARED_SRC
 
 set(THIRD_PARTY_SRC
     ${THIRD_PARTY_BIGINT_SRC}
     ${THIRD_PARTY_PDFIUM_BASE_SRC}
+    ${THIRD_PARTY_SKIA_SHARED_SRC}
     ${THIRD_PARTY_FX_AGG_SRC}
     ${THIRD_PARTY_FX_LCMS2}
     ${THIRD_PARTY_FX_LIBOPENJPEG}
