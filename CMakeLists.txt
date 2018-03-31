@@ -33,60 +33,68 @@ find_package(ZLIB REQUIRED)
 find_package(PNG REQUIRED)
 
 set(PDFIUM_SRC
-    fpdfsdk/cba_annotiterator.cpp
-    fpdfsdk/cba_annotiterator.h
     fpdfsdk/cfx_systemhandler.cpp
     fpdfsdk/cfx_systemhandler.h
+    fpdfsdk/cpdfsdk_actionhandler.cpp
+    fpdfsdk/cpdfsdk_actionhandler.h
     fpdfsdk/cpdfsdk_annot.cpp
     fpdfsdk/cpdfsdk_annot.h
     fpdfsdk/cpdfsdk_annothandlermgr.cpp
     fpdfsdk/cpdfsdk_annothandlermgr.h
     fpdfsdk/cpdfsdk_annotiteration.cpp
     fpdfsdk/cpdfsdk_annotiteration.h
+    fpdfsdk/cpdfsdk_annotiterator.cpp
+    fpdfsdk/cpdfsdk_annotiterator.h
     fpdfsdk/cpdfsdk_baannot.cpp
     fpdfsdk/cpdfsdk_baannot.h
     fpdfsdk/cpdfsdk_baannothandler.cpp
     fpdfsdk/cpdfsdk_baannothandler.h
+    fpdfsdk/cpdfsdk_common.h
+    fpdfsdk/cpdfsdk_customaccess.cpp
+    fpdfsdk/cpdfsdk_customaccess.h
     fpdfsdk/cpdfsdk_datetime.cpp
     fpdfsdk/cpdfsdk_datetime.h
+    fpdfsdk/cpdfsdk_fieldaction.cpp
+    fpdfsdk/cpdfsdk_fieldaction.h
+    fpdfsdk/cpdfsdk_filewriteadapter.cpp
+    fpdfsdk/cpdfsdk_filewriteadapter.h
     fpdfsdk/cpdfsdk_formfillenvironment.cpp
     fpdfsdk/cpdfsdk_formfillenvironment.h
+    fpdfsdk/cpdfsdk_helpers.cpp
+    fpdfsdk/cpdfsdk_helpers.h
     fpdfsdk/cpdfsdk_interform.cpp
     fpdfsdk/cpdfsdk_interform.h
+    fpdfsdk/cpdfsdk_memoryaccess.cpp
+    fpdfsdk/cpdfsdk_memoryaccess.h
     fpdfsdk/cpdfsdk_pageview.cpp
     fpdfsdk/cpdfsdk_pageview.h
     fpdfsdk/cpdfsdk_widget.cpp
     fpdfsdk/cpdfsdk_widget.h
     fpdfsdk/cpdfsdk_widgethandler.cpp
     fpdfsdk/cpdfsdk_widgethandler.h
+    fpdfsdk/fpdf_annot.cpp
+    fpdfsdk/fpdf_attachment.cpp
+    fpdfsdk/fpdf_catalog.cpp
     fpdfsdk/fpdf_dataavail.cpp
+    fpdfsdk/fpdf_doc.cpp
+    fpdfsdk/fpdf_editimg.cpp
+    fpdfsdk/fpdf_editpage.cpp
+    fpdfsdk/fpdf_editpath.cpp
+    fpdfsdk/fpdf_edittext.cpp
     fpdfsdk/fpdf_ext.cpp
+    fpdfsdk/fpdf_formfill.cpp
     fpdfsdk/fpdf_flatten.cpp
     fpdfsdk/fpdf_progressive.cpp
+    fpdfsdk/fpdf_save.cpp
     fpdfsdk/fpdf_searchex.cpp
     fpdfsdk/fpdf_structtree.cpp
     fpdfsdk/fpdf_sysfontinfo.cpp
+    fpdfsdk/fpdf_text.cpp
     fpdfsdk/fpdf_transformpage.cpp
-    fpdfsdk/fpdfannot.cpp
-    fpdfsdk/fpdfattachment.cpp
-    fpdfsdk/fpdfdoc.cpp
-    fpdfsdk/fpdfeditimg.cpp
-    fpdfsdk/fpdfeditpage.cpp
-    fpdfsdk/fpdfeditpath.cpp
-    fpdfsdk/fpdfedittext.cpp
-    fpdfsdk/fpdfformfill.cpp
-    fpdfsdk/fpdf_ppo.cpp
-    fpdfsdk/fpdfsave.cpp
-    fpdfsdk/fpdftext.cpp
-    fpdfsdk/fpdfview.cpp
-    fpdfsdk/fsdk_actionhandler.cpp
-    fpdfsdk/fsdk_actionhandler.h
-    fpdfsdk/fsdk_filewriteadapter.cpp
-    fpdfsdk/fsdk_filewriteadapter.h
-    fpdfsdk/fsdk_pauseadapter.cpp
-    fpdfsdk/fsdk_pauseadapter.h
-    fpdfsdk/pdfsdk_fieldaction.cpp
-    fpdfsdk/pdfsdk_fieldaction.h
+    fpdfsdk/fpdf_view.cpp
+    fpdfsdk/ipdfsdk_annothandler.h
+    fpdfsdk/ipdfsdk_pauseadapter.cpp
+    fpdfsdk/ipdfsdk_pauseadapter.h
     public/cpp/fpdf_deleters.h
     public/fpdf_annot.h
     public/fpdf_attachment.h
