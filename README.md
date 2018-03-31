@@ -10,7 +10,14 @@ In this project's top-level dir, run `fetch pdfium`. Go get some coffee, because
 
 Install Homebrew in case you don't have it, then run `brew install libjpg zlib libpng icu4c`.
 
-Open the top-level dir in CLion, then build the **pdfium_test** target.
+Open the top-level dir in CLion.
+
+In Preferences -> Build, Execution, Deployment -> CMake, add this to the CMake options field:
+```
+-DCMAKE_PREFIX_PATH="/usr/local/opt/icu4c"
+```
+
+Build the **pdfium_test** target.
 
 Edit the pdfium_test run configuration, add as program arguments e.g. `--png --scale=4 your.pdf`, then run it.
 

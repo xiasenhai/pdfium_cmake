@@ -1175,7 +1175,6 @@ if(ENABLE_V8)
 
     # for all cases (mksnapshot / v8 no snapshot / internal / external)
     set(V8_BASE_SRC
-        include/v8-debug.h
         include/v8-inspector-protocol.h
         include/v8-inspector.h
         include/v8-platform.h
@@ -1282,6 +1281,8 @@ if(ENABLE_V8)
         src/builtins/builtins-utils.h
         src/builtins/builtins.cc
         src/builtins/builtins.h
+        src/builtins/constants-table-builder.cc
+        src/builtins/constants-table-builder.h
         src/cached-powers.cc
         src/cached-powers.h
         src/callable.h
@@ -1373,6 +1374,7 @@ if(ENABLE_V8)
         src/compiler/frame-states.h
         src/compiler/frame.cc
         src/compiler/frame.h
+        src/compiler/functional-list.h
         src/compiler/gap-resolver.cc
         src/compiler/gap-resolver.h
         src/compiler/graph-assembler.cc
@@ -1588,6 +1590,8 @@ if(ENABLE_V8)
         src/extensions/trigger-failure-extension.h
         src/external-reference-table.cc
         src/external-reference-table.h
+        src/external-reference.cc
+        src/external-reference.h
         src/factory-inl.h
         src/factory.cc
         src/factory.h
@@ -1616,6 +1620,8 @@ if(ENABLE_V8)
         src/global-handles.cc
         src/global-handles.h
         src/globals.h
+        src/handler-table.cc
+        src/handler-table.h
         src/handles-inl.h
         src/handles.cc
         src/handles.h
@@ -1647,6 +1653,7 @@ if(ENABLE_V8)
         src/heap/invalidated-slots-inl.h
         src/heap/invalidated-slots.cc
         src/heap/invalidated-slots.h
+        src/heap/item-parallel-job.cc
         src/heap/item-parallel-job.h
         src/heap/local-allocator.h
         src/heap/mark-compact-inl.h
@@ -1696,6 +1703,8 @@ if(ENABLE_V8)
         src/icu_util.h
         src/identity-map.cc
         src/identity-map.h
+        src/instruction-stream.cc
+        src/instruction-stream.h
         src/interface-descriptors.cc
         src/interface-descriptors.h
         src/interpreter/block-coverage-builder.h
@@ -1808,6 +1817,8 @@ if(ENABLE_V8)
         src/objects/js-array.h
         src/objects/js-collection-inl.h
         src/objects/js-collection.h
+        src/objects/js-promise-inl.h
+        src/objects/js-promise.h
         src/objects/js-regexp-inl.h
         src/objects/js-regexp.h
         src/objects/literal-objects-inl.h
@@ -1815,6 +1826,10 @@ if(ENABLE_V8)
         src/objects/literal-objects.h
         src/objects/map-inl.h
         src/objects/map.h
+        src/objects/maybe-object-inl.h
+        src/objects/maybe-object.h
+        src/objects/microtask-inl.h
+        src/objects/microtask.h
         src/objects/module-inl.h
         src/objects/module.cc
         src/objects/module.h
@@ -1822,6 +1837,8 @@ if(ENABLE_V8)
         src/objects/name.h
         src/objects/object-macros-undef.h
         src/objects/object-macros.h
+        src/objects/promise-inl.h
+        src/objects/promise.h
         src/objects/property-descriptor-object-inl.h
         src/objects/property-descriptor-object.h
         src/objects/regexp-match-info.h
@@ -1838,8 +1855,6 @@ if(ENABLE_V8)
         src/objects/template-objects.h
         src/ostreams.cc
         src/ostreams.h
-        src/parsing/background-parsing-task.cc
-        src/parsing/background-parsing-task.h
         src/parsing/duplicate-finder.h
         src/parsing/expression-classifier.h
         src/parsing/expression-scope-reparenter.cc
@@ -1854,7 +1869,6 @@ if(ENABLE_V8)
         src/parsing/parsing.cc
         src/parsing/parsing.h
         src/parsing/pattern-rewriter.cc
-        src/parsing/preparse-data-format.h
         src/parsing/preparse-data.cc
         src/parsing/preparse-data.h
         src/parsing/preparsed-scope-data.cc
@@ -2098,14 +2112,10 @@ if(ENABLE_V8)
         src/wasm/signature-map.h
         src/wasm/streaming-decoder.cc
         src/wasm/streaming-decoder.h
-        src/wasm/wasm-api.cc
-        src/wasm/wasm-api.h
         src/wasm/wasm-code-manager.cc
         src/wasm/wasm-code-manager.h
         src/wasm/wasm-code-specialization.cc
         src/wasm/wasm-code-specialization.h
-        src/wasm/wasm-code-wrapper.cc
-        src/wasm/wasm-code-wrapper.h
         src/wasm/wasm-constants.h
         src/wasm/wasm-debug.cc
         src/wasm/wasm-engine.cc
@@ -2508,8 +2518,11 @@ if(ENABLE_V8)
         src/builtins/builtins-string-gen.h
         src/builtins/builtins-symbol-gen.cc
         src/builtins/builtins-typedarray-gen.cc
+        src/builtins/builtins-typedarray-gen.h
         src/builtins/builtins-utils-gen.h
         src/builtins/builtins-wasm-gen.cc
+        src/builtins/growable-fixed-array-gen.cc
+        src/builtins/growable-fixed-array-gen.h
         src/builtins/setup-builtins-internal.cc
         src/heap/setup-heap-internal.cc
         src/ic/accessor-assembler.cc
@@ -2562,7 +2575,7 @@ if(ENABLE_V8)
         ${V8_SRC_DIR}/src/snapshot/snapshot-external.cc
     )
 
-    # tools/js2c.py libraries.cc CORE ../../v8/src/js/macros.py ../../v8/src/messages.h ../../v8/src/js/prologue.js ../../v8/src/js/array.js ../../v8/src/js/typedarray.js ../../v8/src/js/messages.js ../../v8/src/js/spread.js ../../v8/src/debug/mirrors.js ../../v8/src/debug/debug.js ../../v8/src/debug/liveedit.js ((../../v8/src/js/intl.js)) --startup_blob libraries.bin
+    # tools/js2c.py libraries.cc CORE ../../v8/src/js/macros.py ../../v8/src/messages.h ../../v8/src/js/prologue.js ../../v8/src/js/array.js ../../v8/src/js/typedarray.js ../../v8/src/js/messages.js ../../v8/src/debug/mirrors.js ../../v8/src/debug/debug.js ../../v8/src/debug/liveedit.js ((../../v8/src/js/intl.js)) --startup_blob libraries.bin
     set(js2c_ARGS
         ${V8_SRC_DIR}/src/js/macros.py
         ${V8_SRC_DIR}/src/messages.h
@@ -2570,7 +2583,6 @@ if(ENABLE_V8)
         ${V8_SRC_DIR}/src/js/array.js
         ${V8_SRC_DIR}/src/js/typedarray.js
         ${V8_SRC_DIR}/src/js/messages.js
-        ${V8_SRC_DIR}/src/js/spread.js
         ${V8_SRC_DIR}/src/debug/mirrors.js
         ${V8_SRC_DIR}/src/debug/debug.js
         ${V8_SRC_DIR}/src/debug/liveedit.js
@@ -2778,13 +2790,13 @@ if(ENABLE_V8)
     target_include_directories(v8 PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/v8>
-        ${ICU_INCLUDE_DIRS}
         ${INSPECTOR_OUT_DIR}/../..
     )
+    target_include_directories(v8 PUBLIC ${ICU_INCLUDE_DIRS})
     target_include_directories(v8 PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pdfium/v8/include>
     )
-    target_link_libraries(v8 PRIVATE ${ICU_UC_LIBRARIES} ${ICU_I18N_LIBRARIES})
+    target_link_libraries(v8 PUBLIC ${ICU_UC_LIBRARIES} ${ICU_I18N_LIBRARIES})
     target_compile_definitions(v8 PUBLIC ${V8_DEFINES})
 
     if (V8_USE_SNAPSHOT)
@@ -2818,7 +2830,7 @@ if(ENABLE_V8)
     target_compile_definitions(pdfium PUBLIC $<TARGET_PROPERTY:v8,INTERFACE_COMPILE_DEFINITIONS> ${PDFIUM_DEFINES})
 else()
     target_link_libraries(pdfium PRIVATE freetype ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${ICU_UC_LIBRARIES})
-    target_include_directories(pdfium PRIVATE ${ICU_INCLUDE_DIRS})
+    target_include_directories(pdfium PUBLIC ${ICU_INCLUDE_DIRS})
     target_compile_definitions(pdfium PUBLIC ${PDFIUM_DEFINES})
 endif()
 
