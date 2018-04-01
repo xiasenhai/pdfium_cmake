@@ -82,8 +82,9 @@ set(PDFIUM_SRC
     fpdfsdk/fpdf_editpath.cpp
     fpdfsdk/fpdf_edittext.cpp
     fpdfsdk/fpdf_ext.cpp
-    fpdfsdk/fpdf_formfill.cpp
     fpdfsdk/fpdf_flatten.cpp
+    fpdfsdk/fpdf_formfill.cpp
+    fpdfsdk/fpdf_ppo.cpp
     fpdfsdk/fpdf_progressive.cpp
     fpdfsdk/fpdf_save.cpp
     fpdfsdk/fpdf_searchex.cpp
