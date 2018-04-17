@@ -566,6 +566,8 @@ set(FXCRT_SRC
     core/fxcrt/cfx_binarybuf.h
     core/fxcrt/cfx_bitstream.cpp
     core/fxcrt/cfx_bitstream.h
+    core/fxcrt/cfx_blockbuffer.cpp
+    core/fxcrt/cfx_blockbuffer.h
     core/fxcrt/cfx_datetime.cpp
     core/fxcrt/cfx_datetime.h
     core/fxcrt/cfx_fileaccess_posix.cpp
@@ -575,6 +577,10 @@ set(FXCRT_SRC
     core/fxcrt/cfx_fixedbufgrow.h
     core/fxcrt/cfx_memorystream.cpp
     core/fxcrt/cfx_memorystream.h
+    core/fxcrt/cfx_seekablemultistream.cpp
+    core/fxcrt/cfx_seekablemultistream.h
+    core/fxcrt/cfx_seekablestreamproxy.cpp
+    core/fxcrt/cfx_seekablestreamproxy.h
     core/fxcrt/cfx_utf8decoder.cpp
     core/fxcrt/cfx_utf8decoder.h
     core/fxcrt/cfx_widetextbuf.cpp
@@ -614,18 +620,18 @@ set(FXCRT_SRC
     core/fxcrt/weak_ptr.h
     core/fxcrt/widestring.cpp
     core/fxcrt/widestring.h
-    core/fxcrt/xml/cxml_attritem.cpp
-    core/fxcrt/xml/cxml_attritem.h
-    core/fxcrt/xml/cxml_content.cpp
-    core/fxcrt/xml/cxml_content.h
-    core/fxcrt/xml/cxml_databufacc.cpp
-    core/fxcrt/xml/cxml_databufacc.h
-    core/fxcrt/xml/cxml_element.cpp
-    core/fxcrt/xml/cxml_element.h
-    core/fxcrt/xml/cxml_object.cpp
-    core/fxcrt/xml/cxml_object.h
-    core/fxcrt/xml/cxml_parser.cpp
-    core/fxcrt/xml/cxml_parser.h
+    core/fxcrt/xml/cfx_xmlchardata.cpp
+    core/fxcrt/xml/cfx_xmlchardata.h
+    core/fxcrt/xml/cfx_xmlelement.cpp
+    core/fxcrt/xml/cfx_xmlelement.h
+    core/fxcrt/xml/cfx_xmlinstruction.cpp
+    core/fxcrt/xml/cfx_xmlinstruction.h
+    core/fxcrt/xml/cfx_xmlnode.cpp
+    core/fxcrt/xml/cfx_xmlnode.h
+    core/fxcrt/xml/cfx_xmlparser.cpp
+    core/fxcrt/xml/cfx_xmlparser.h
+    core/fxcrt/xml/cfx_xmltext.cpp
+    core/fxcrt/xml/cfx_xmltext.h
     # TODO pdf_enable_xfa
 ) # FXCRT_SRC
 
