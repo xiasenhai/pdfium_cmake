@@ -566,8 +566,6 @@ set(FXCRT_SRC
     core/fxcrt/cfx_binarybuf.h
     core/fxcrt/cfx_bitstream.cpp
     core/fxcrt/cfx_bitstream.h
-    core/fxcrt/cfx_blockbuffer.cpp
-    core/fxcrt/cfx_blockbuffer.h
     core/fxcrt/cfx_datetime.cpp
     core/fxcrt/cfx_datetime.h
     core/fxcrt/cfx_fileaccess_posix.cpp
@@ -776,8 +774,19 @@ set(PWL_SRC
     fpdfsdk/pwl/cpwl_wnd.cpp
     fpdfsdk/pwl/cpwl_wnd.h
 ) # PWL_SRC
+
+set(JAVASCRIPT_SRC
+    fxjs/cjs_event_context_stub.cpp
+    fxjs/cjs_event_context_stub.h
+    fxjs/cjs_runtimestub.cpp
+    fxjs/cjs_runtimestub.h
+    fxjs/ijs_event_context.h
+    fxjs/ijs_runtime.cpp
+    fxjs/ijs_runtime.h
+) # JAVASCRIPT_SRC
+
 if(ENABLE_V8)
-    set(JAVASCRIPT_SRC
+    list(APPEND JAVASCRIPT_SRC
         fxjs/CJX_Define.h
         fxjs/JS_Define.cpp
         fxjs/JS_Define.h
@@ -857,12 +866,6 @@ if(ENABLE_V8)
         fxjs/global_timer.h
         fxjs/js_resources.cpp
         fxjs/js_resources.h
-    ) # JAVASCRIPT_SRC
-else()
-    set(JAVASCRIPT_SRC
-        fxjs/cjs_event_context_stub.cpp
-        fxjs/cjs_event_context_stub.h
-        fxjs/cjs_runtimestub.cpp
     ) # JAVASCRIPT_SRC
 endif()
 
